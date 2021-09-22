@@ -6,44 +6,52 @@
 #define MARKETLIST_SHOPPINGLIST_H
 
 #include <list>
-#include <string>
 #include <algorithm>
-#include <iostream>
-using namespace std;
+#include "ShoppingItem.h"
 
 class ShoppingList {
 public:
-    ShoppingList() = default;
+    explicit ShoppingList(string category = "") : category(std::move(category)) {}
     ~ShoppingList() = default;
 
-    void addArticle(const string& newArticle) {
-        spesaList.push_back(newArticle);
+    void addArticle(const ShoppingItem& newArticle) {
+        if (newArticle.getCategory() == ShoppingList::getCategory())
+            spesaList.emplace_back(newArticle);
+        else {
+            if (ShoppingList::getCategory().empty())
+                spesaList.emplace_back(newArticle);
+        }
     }
 
-    void removeArticle(const string& toDelete) {
-        for (auto it = spesaList.begin(); it != spesaList.end(); ++it)
+    void removeArticle(const ShoppingItem& toDelete) {
+        for (auto it = spesaList.begin(); it != spesaList.end(); ++it) {
             if (findArticle(toDelete))
                 it = spesaList.erase(it);
+        }
     }
 
-    bool findArticle(const string& toFind) {
-        bool found = false;
+    bool findArticle(const ShoppingItem& toFind) {
         auto it = find(spesaList.begin(), spesaList.end(), toFind);
         if (it != spesaList.end())
-            found = true;
-        return found;
+            return true;
+        else
+            return false;
     }
 
     void printList() {
-        cout << "LISTA DELLA SPESA:" << endl;
+        cout << "LISTA SPESA: " << ShoppingList::getCategory() << endl;
         for (const auto& it : spesaList)
-            cout << it << endl;
+            cout << it.getItemName() << endl;
         cout << endl;
     }
 
+    const string &getCategory() const {
+        return category;
+    }
 
 private:
-    list<string> spesaList;
+    list<ShoppingItem> spesaList;
+    string category;
 };
 
 
