@@ -14,6 +14,8 @@ public:
     explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1) :
     itemName(std::move(itemName)), category(std::move(category)), price(price), quantity(quantity) {}
 
+    ~ShoppingItem() = default;
+
     bool operator==(const ShoppingItem& other) {
         return itemName == other.itemName;
     }
@@ -27,6 +29,7 @@ public:
     }
 
     float getPrice() const {
+        std::cout.precision(3);
         return price;
     }
 
@@ -35,12 +38,22 @@ public:
     }
 
     void setPrice(float p) {
-        std::cout.precision(2);
+        std::cout.precision(3);
         this->price = p;
     }
 
     void setQuantity(int q) {
         this->quantity = q;
+    }
+
+    static void printItemInfo(const ShoppingItem& item) {
+        cout << "\nITEM: " << item.getItemName() << endl;
+        cout << "QUANTITY: " << item.getQuantity() << endl;
+        cout << "TOTAL PRICE: ";
+        if (item.getPrice() == 0)
+            cout << "Non specificato" << endl;
+        else
+            cout << ((item.getPrice())*(static_cast<float>(item.getQuantity()))) << " euro" << endl;
     }
 
 private:
