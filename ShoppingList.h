@@ -8,11 +8,25 @@
 #include <list>
 #include <algorithm>
 #include "ShoppingItem.h"
+#include "Subject.h"
 
-class ShoppingList {
+class ShoppingList : public Subject {
 public:
     explicit ShoppingList(string category = "") : category(std::move(category)) {}
-    ~ShoppingList() = default;
+    ~ShoppingList() override = default;
+
+    void registerObserver(Observer* o) override {
+        users.emplace_back(o);
+    }
+
+    void removeObserver(Observer* o) override {
+        users.remove(o);
+    }
+
+    void notify() override {
+        for(const auto & it : users)
+            it->update();
+    }
 
     void addArticle(const ShoppingItem& newArticle) {
         if (newArticle.getCategory() == ShoppingList::getCategory())
@@ -51,6 +65,7 @@ public:
 
 private:
     list<ShoppingItem> spesaList;
+    list<Observer*> users;
     string category;
 };
 

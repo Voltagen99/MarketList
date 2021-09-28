@@ -11,7 +11,7 @@ using namespace std;
 
 class ShoppingItem {
 public:
-    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1) :
+    explicit ShoppingItem(string itemName, string category = "", float price = 0, int quantity = 1) :
     itemName(std::move(itemName)), category(std::move(category)), price(price), quantity(quantity) {}
 
     ~ShoppingItem() = default;
@@ -46,14 +46,22 @@ public:
         this->quantity = q;
     }
 
+    void setCategory(const string &cat) {
+        this->category = cat;
+    }
+
+    static float getTotalPrice(const ShoppingItem& item) {
+        return (item.getPrice())*(static_cast<float>(item.getQuantity()));
+    }
+
     static void printItemInfo(const ShoppingItem& item) {
         cout << "\nITEM: " << item.getItemName() << endl;
         cout << "QUANTITY: " << item.getQuantity() << endl;
         cout << "TOTAL PRICE: ";
-        if (item.getPrice() == 0)
+        if (ShoppingItem::getTotalPrice(item) == 0)
             cout << "Non specificato" << endl;
         else
-            cout << ((item.getPrice())*(static_cast<float>(item.getQuantity()))) << " euro" << endl;
+            cout << ShoppingItem::getTotalPrice(item) << " euro" << endl;
     }
 
 private:
