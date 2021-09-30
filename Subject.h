@@ -16,5 +16,4 @@ protected:
     virtual ~Subject() = default;
 };
 
-
 #endif //MARKETLIST_SUBJECT_H

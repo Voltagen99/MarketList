@@ -12,5 +12,4 @@ protected:
     virtual ~Observer() = default;
 };
 
-
 #endif //MARKETLIST_OBSERVER_H

@@ -9,7 +9,7 @@
 #include "Subject.h"
 #include "ShoppingList.h"
 
-class ProductScanner {
+class ProductScanner : public Observer {
 public:
     explicit ProductScanner(ShoppingList* shoppingList) : shoppingList(shoppingList) {
         shoppingList->registerObserver(this);
@@ -19,13 +19,17 @@ public:
     }
 
     void update() override {
-        // int newQuantity = shoppingList->lastEmail().getTitle();
-        // unfinished method
+        if (shoppingList->getListCategory().empty())
+            cout << "\nMarket ";
+        else
+            cout << "\n" << shoppingList->getListCategory() << " ";
+        cout << "List updated!" << endl;
+        cout << "Number of enlisted elements: " << shoppingList->getShoppingListSize() << endl;
+        shoppingList->printList();
     }
 
 private:
     ShoppingList* shoppingList;
 };
-
 
 #endif //MARKETLIST_PRODUCTSCANNER_H

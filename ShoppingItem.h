@@ -12,7 +12,7 @@ using namespace std;
 class ShoppingItem {
 public:
     explicit ShoppingItem(string itemName, string category = "", float price = 0, int quantity = 1) :
-    itemName(std::move(itemName)), category(std::move(category)), price(price), quantity(quantity) {}
+    itemName(move(itemName)), category(move(category)), price(price), quantity(quantity) {}
 
     ~ShoppingItem() = default;
 
@@ -33,35 +33,40 @@ public:
         return price;
     }
 
-    int getQuantity() const {
-        return quantity;
-    }
-
     void setPrice(float p) {
         std::cout.precision(3);
         this->price = p;
+    }
+
+    int getQuantity() const {
+        return quantity;
     }
 
     void setQuantity(int q) {
         this->quantity = q;
     }
 
-    void setCategory(const string &cat) {
-        this->category = cat;
+    void setCategory(const string &c) {
+        this->category = c;
     }
 
-    static float getTotalPrice(const ShoppingItem& item) {
-        return (item.getPrice())*(static_cast<float>(item.getQuantity()));
+    bool isPrice() const {
+        return this->getTotalPrice() != 0;
     }
 
-    static void printItemInfo(const ShoppingItem& item) {
-        cout << "\nITEM: " << item.getItemName() << endl;
-        cout << "QUANTITY: " << item.getQuantity() << endl;
-        cout << "TOTAL PRICE: ";
-        if (ShoppingItem::getTotalPrice(item) == 0)
-            cout << "Non specificato" << endl;
+    float getTotalPrice() const {
+        std::cout.precision(3);
+        return (this->getPrice())*(static_cast<float>(this->getQuantity()));
+    }
+
+    void displayItem() {
+        cout << "[ITEM: " << itemName << "] ";
+        cout << "[" << quantity << "] ";
+        cout << "[TOTAL PRICE: ";
+        if (!this->isPrice())
+            cout << "Not specified" << endl;
         else
-            cout << ShoppingItem::getTotalPrice(item) << " euro" << endl;
+            cout << this->getTotalPrice() << " Euro]" << endl;
     }
 
 private:
@@ -69,6 +74,5 @@ private:
     float price;
     int quantity;
 };
-
 
 #endif //MARKETLIST_SHOPPINGITEM_H

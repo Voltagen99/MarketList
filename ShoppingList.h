@@ -6,13 +6,15 @@
 #define MARKETLIST_SHOPPINGLIST_H
 
 #include <list>
+#include <vector>
 #include <algorithm>
+#include <exception>
 #include "ShoppingItem.h"
 #include "Subject.h"
 
 class ShoppingList : public Subject {
 public:
-    explicit ShoppingList(string category = "") : category(std::move(category)) {}
+    explicit ShoppingList(string category = "") : category(move(category)) {}
     ~ShoppingList() override = default;
 
     void registerObserver(Observer* o) override {
@@ -29,19 +31,31 @@ public:
     }
 
     void addArticle(const ShoppingItem& newArticle) {
-        if (newArticle.getCategory() == ShoppingList::getCategory())
+        bool match = false;
+        if (newArticle.getCategory() == ShoppingList::getListCategory()) {
             spesaList.emplace_back(newArticle);
-        else {
-            if (ShoppingList::getCategory().empty())
-                spesaList.emplace_back(newArticle);
+            match = true;
         }
+        else {
+            if (ShoppingList::getListCategory().empty()) {
+                spesaList.emplace_back(newArticle);
+                match = true;
+            }
+        }
+        if (match)
+            notify();
     }
 
     void removeArticle(const ShoppingItem& toDelete) {
+        bool found = false;
         for (auto it = spesaList.begin(); it != spesaList.end(); ++it) {
-            if (findArticle(toDelete))
+            if (findArticle(toDelete)) {
                 it = spesaList.erase(it);
+                found = true;
+            }
         }
+        if (found)
+            notify();
     }
 
     bool findArticle(const ShoppingItem& toFind) {
@@ -53,21 +67,41 @@ public:
     }
 
     void printList() {
-        cout << "LISTA SPESA: " << ShoppingList::getCategory() << endl;
-        for (const auto& it : spesaList)
-            cout << it.getItemName() << endl;
-        cout << endl;
+        if (this->getListCategory().empty())
+            cout << "---Market List:" << endl;
+        else
+            cout << "---" << this->getListCategory() << " List: " << endl;
+        int i = 1;
+        for (ShoppingItem &it : spesaList) {
+            cout << "---" << i << ") ";
+            it.displayItem();
+            i++;
+        }
     }
 
-    const string &getCategory() const {
+    const string &getListCategory() const {
         return category;
     }
 
+    void setListCategory(const string &c) {
+        this->category = c;
+    }
+
+    void setShoppingListSize(size_t i) {
+        if (i > 0)
+           spesaList.reserve(i);
+        else
+            throw length_error("ERROR! Invalid list size.");
+    }
+
+    size_t getShoppingListSize() const {
+        return spesaList.size();
+    }
+
 private:
-    list<ShoppingItem> spesaList;
+    vector<ShoppingItem> spesaList;
     list<Observer*> users;
     string category;
 };
-
 
 #endif //MARKETLIST_SHOPPINGLIST_H
