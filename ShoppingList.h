@@ -78,13 +78,6 @@ public:
         this->category = c;
     }
 
-    void setShoppingListSize(size_t i) {
-        if (i > 0)
-           spesaList.reserve(i);
-        else
-            throw length_error("ERROR! Invalid list size.");
-    }
-
     size_t getShoppingListSize() const {
         return spesaList.size();
     }

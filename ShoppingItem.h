@@ -61,6 +61,11 @@ public:
 
     void displayItem() {
         cout << "[ITEM: " << itemName << "] ";
+        cout << "[CATEGORY: ";
+        if (this->getCategory().empty())
+            cout << "Not specified]" << endl;
+        else
+            cout << this->getCategory() << "]" << endl;
         cout << "[" << quantity << "] ";
         cout << "[TOTAL PRICE: ";
         if (!this->isPrice())

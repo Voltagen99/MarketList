@@ -6,7 +6,7 @@ int main() {
     ShoppingItem item2("Mozzarella Cheese","Dairy", 1.20);
     ShoppingItem item3("Chicken Wings","Animal Products", 2);
     ShoppingItem item4("Grana Padano Cheese", "Dairy", 10);
-    ShoppingItem item5("Napisan", "Housecare");
+    ShoppingItem item5("Napisan");
 
     ShoppingList list1;
     ShoppingList list2;
@@ -21,7 +21,9 @@ int main() {
     list1.addArticle(item4);
     list1.addArticle(item5);
     list1.removeArticle(item5);
+    item5.setCategory("Housecare");
     item5.setPrice(6.20);
+    item5.setQuantity(2);
     list1.addArticle(item5);
     list2.addArticle(item1);
     list2.addArticle(item2);
