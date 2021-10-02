@@ -12,14 +12,6 @@ int main() {
     ShoppingList list2;
     list2.setListCategory("Dairy");
 
-    try {
-        list1.setShoppingListSize(-1);
-        list2.setShoppingListSize(10);
-    }
-    catch(out_of_range const& e) {
-        cerr << e.what() << endl;
-    }
-
     ProductScanner general(&list1);
     ProductScanner dairy(&list2);
 

@@ -11,6 +11,7 @@
 #include <exception>
 #include "ShoppingItem.h"
 #include "Subject.h"
+#define MAX_SIZE 50
 
 class ShoppingList : public Subject {
 public:
@@ -32,7 +33,8 @@ public:
 
     void addArticle(const ShoppingItem& newArticle) {
         bool match = false;
-        if (newArticle.getCategory() == ShoppingList::getListCategory()) {
+        if (newArticle.getCategory() == ShoppingList::getListCategory() &&
+        spesaList.size() <= MAX_SIZE) {
             spesaList.emplace_back(newArticle);
             match = true;
         }
