@@ -64,7 +64,7 @@ public:
         cout << "[" << quantity << "] ";
         cout << "[TOTAL PRICE: ";
         if (!this->isPrice())
-            cout << "Not specified" << endl;
+            cout << "Not specified]" << endl;
         else
             cout << this->getTotalPrice() << " Euro]" << endl;
     }

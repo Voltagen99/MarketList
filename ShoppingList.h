@@ -47,23 +47,12 @@ public:
     }
 
     void removeArticle(const ShoppingItem& toDelete) {
-        bool found = false;
-        for (auto it = spesaList.begin(); it != spesaList.end(); ++it) {
-            if (findArticle(toDelete)) {
-                it = spesaList.erase(it);
-                found = true;
-            }
-        }
-        if (found)
+        vector<ShoppingItem>::iterator it;
+        it = find(spesaList.begin(), spesaList.end(), toDelete);
+        if (it != spesaList.end()) {
+            spesaList.erase(it);
             notify();
-    }
-
-    bool findArticle(const ShoppingItem& toFind) {
-        auto it = find(spesaList.begin(), spesaList.end(), toFind);
-        if (it != spesaList.end())
-            return true;
-        else
-            return false;
+        }
     }
 
     void printList() {
