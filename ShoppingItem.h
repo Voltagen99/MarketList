@@ -11,13 +11,20 @@ using namespace std;
 
 class ShoppingItem {
 public:
-    explicit ShoppingItem(string itemName, string category = "", float price = 0, int quantity = 1) :
+    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1) :
     itemName(move(itemName)), category(move(category)), price(price), quantity(quantity) {}
 
     ~ShoppingItem() = default;
 
     bool operator==(const ShoppingItem& other) {
         return itemName == other.itemName;
+    }
+
+    bool isName() const {
+        if (this->getItemName().empty())
+            return false;
+        else
+            return true;
     }
 
     const string &getItemName() const {

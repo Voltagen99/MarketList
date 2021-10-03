@@ -8,10 +8,11 @@
 class ItemTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        s.getItemName();
-        s.setCategory("");
-        s.setPrice(5.5);
-        s.setQuantity(1);
+        if (s.isName()) {
+            s.setCategory("");
+            s.setPrice(0);
+            s.setQuantity(1);
+        }
     }
 
     void TearDown() override {}
@@ -19,9 +20,17 @@ protected:
 };
 
 TEST_F(ItemTest, TestPriceCalc) {
+    s.setPrice(5);
     s.setQuantity(2);
-    ASSERT_EQ(11, s.getTotalPrice());
+    ASSERT_EQ(10, s.getTotalPrice());
 }
+
+TEST_F(ItemTest, TestCategory) {
+    s.setCategory("Base");
+    ASSERT_EQ("Base", s.getCategory());
+}
+
+
 
 
 
