@@ -18,12 +18,14 @@ protected:
 };
 
 TEST_F(ItemTest, TestPriceCalc) {
+    ASSERT_EQ(0, s.getTotalPrice());
     s.setPrice(5);
     s.setQuantity(2);
     ASSERT_EQ(10, s.getTotalPrice());
 }
 
 TEST_F(ItemTest, TestCategory) {
+    ASSERT_FALSE(s.isCategory());
     s.setCategory("Base");
     ASSERT_EQ("Base", s.getCategory());
 }

@@ -78,15 +78,15 @@ public:
         this->category = c;
     }
 
-    size_t getShoppingListSize() const {
-        return spesaList.size();
-    }
-
     bool isListCategory() const {
         if (this->getListCategory().empty())
             return false;
         else
             return true;
+    }
+
+    size_t getShoppingListSize() const {
+        return spesaList.size();
     }
 
 private:

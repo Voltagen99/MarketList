@@ -10,6 +10,7 @@ TEST(ShoppingItem, DefaultConstructor) {
     ShoppingItem s;
     ASSERT_FALSE(s.isName());
     ASSERT_FALSE(s.isCategory());
+    ASSERT_EQ(0, s.getPrice());
     ASSERT_EQ(1, s.getQuantity());
 }
 
