@@ -89,6 +89,10 @@ public:
         return spesaList.size();
     }
 
+    size_t getUsersNumber() const {
+        return users.size();
+    }
+
 private:
     vector<ShoppingItem> spesaList;
     list<Observer*> users;

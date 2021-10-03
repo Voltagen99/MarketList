@@ -6,7 +6,6 @@
 #define MARKETLIST_PRODUCTSCANNER_H
 
 #include "Observer.h"
-#include "Subject.h"
 #include "ShoppingList.h"
 
 class ProductScanner : public Observer {
