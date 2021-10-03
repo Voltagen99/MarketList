@@ -6,6 +6,6 @@ add_subdirectory(lib/googletest-master)
 include_directories(lib/googletest-master/googletest/include)
 include_directories(lib/googletest-master/googlemock/include)
 
-set(TEST_SOURCE_FILES runAllTests.cpp MarketListFixture.cpp ShoppingItemTest.cpp)
+set(TEST_SOURCE_FILES runAllTests.cpp ItemSuite.cpp ShoppingTest.cpp ListSuite.cpp)
 add_executable(RunMarketListTests ${TEST_SOURCE_FILES})
 target_link_libraries(RunMarketListTests gtest gtest_main)

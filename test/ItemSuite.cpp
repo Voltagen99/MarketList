@@ -8,13 +8,11 @@
 class ItemTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        if (s.isName()) {
-            s.setCategory("");
-            s.setPrice(0);
-            s.setQuantity(1);
-        }
+        s.setItemName("");
+        s.setCategory("");
+        s.setPrice(0);
+        s.setQuantity(1);
     }
-
     void TearDown() override {}
     ShoppingItem s;
 };
@@ -29,8 +27,3 @@ TEST_F(ItemTest, TestCategory) {
     s.setCategory("Base");
     ASSERT_EQ("Base", s.getCategory());
 }
-
-
-
-
-

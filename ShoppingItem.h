@@ -27,6 +27,17 @@ public:
             return true;
     }
 
+    void setItemName(const string &item) {
+        ShoppingItem::itemName = item;
+    }
+
+    bool isCategory() const {
+        if (this->category.empty())
+            return false;
+        else
+            return true;
+    }
+
     const string &getItemName() const {
         return itemName;
     }

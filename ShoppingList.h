@@ -82,6 +82,13 @@ public:
         return spesaList.size();
     }
 
+    bool isListCategory() const {
+        if (this->getListCategory().empty())
+            return false;
+        else
+            return true;
+    }
+
 private:
     vector<ShoppingItem> spesaList;
     list<Observer*> users;
