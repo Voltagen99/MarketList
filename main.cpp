@@ -1,7 +1,9 @@
 #include "ShoppingList.h"
 #include "ProductScanner.h"
+#include "version.h"
 
 int main() {
+    cout << "PROJECT: Market List\nVERSION: " << VERSION << endl;
     ShoppingItem item1("Milk", "Dairy", 1.50);
     ShoppingItem item2("Mozzarella Cheese","Dairy", 1.20);
     ShoppingItem item3("Chicken Wings","Animal Products", 2);
