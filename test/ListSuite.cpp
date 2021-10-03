@@ -32,12 +32,3 @@ TEST_F(ListTest, TestListSize) {
     l.removeArticle(s);
     ASSERT_EQ(9, l.getShoppingListSize());
 }
-
-TEST_F(ListTest, TestUsers) {
-    ASSERT_EQ(1, l.getUsersNumber());
-    Observer* o;
-    l.registerObserver(o);
-    ASSERT_EQ(2, l.getUsersNumber());
-    l.removeObserver(o);
-    ASSERT_EQ(1, l.getUsersNumber());
-}
