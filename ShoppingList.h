@@ -18,75 +18,19 @@ public:
     explicit ShoppingList(string listName = "") : listName(move(listName)) {}
     ~ShoppingList() override = default;
 
-    void registerObserver(Observer* o) override {
-        users.emplace_back(o);
-    }
+    void registerObserver(Observer* o) override;
 
-    void removeObserver(Observer* o) override {
-        users.remove(o);
-    }
+    void removeObserver(Observer* o) override;
 
-    void notify() override {
-        for(const auto & it : users)
-            it->update();
-    }
+    void notify() override;
 
-    void addArticle(const ShoppingItem& newArticle) {
-        bool match = false;
-        if (newArticle.getCategory() == ShoppingList::getListName() &&
-        spesaList.size() <= MAX_SIZE) {
-            spesaList.emplace_back(newArticle);
-            match = true;
-        }
-        else {
-            if (ShoppingList::getListName().empty()) {
-                spesaList.emplace_back(newArticle);
-                match = true;
-            }
-        }
-        if (match)
-            notify();
-    }
+    void addArticle(const ShoppingItem& newArticle);
 
-    void removeArticle(const ShoppingItem& toDelete) {
-        vector<ShoppingItem>::iterator it;
-        it = find(spesaList.begin(), spesaList.end(), toDelete);
-        if (it != spesaList.end()) {
-            spesaList.erase(it);
-            notify();
-        }
-        // TODO Change vector to multimap filled with ShoppingItems (add and remove the articles by confronting the name)
-    }
+    void removeArticle(const ShoppingItem& toDelete);
 
-    void buyItem(ShoppingItem toBuy) {
-        if (!toBuy.isBought()) {
-            toBuy.setBought(true);
-            notify();
-        }
-    }
+    void buyItem(ShoppingItem toBuy);
 
-    void unBuyItem(ShoppingItem toUnBuy) {
-        if (toUnBuy.isBought()) {
-            toUnBuy.setBought(false);
-            notify();
-        }
-    }
-
-    void printList() {
-        int i = 1, bought_items = 0, not_bought_items = static_cast<int>(getShoppingListSize());
-        for (ShoppingItem &it : spesaList) {
-            cout << "---" << i << ") ";
-            it.displayItem();
-            if (it.isBought()) {
-                bought_items++;
-                not_bought_items--;
-            }
-            i++;
-        }
-        cout << "You have bought " << bought_items << "items." << endl;
-        cout << "You still have to buy " << not_bought_items << "items." << endl;
-    }
-    // TODO ^^ Move responsibility to ProductVisualizer
+    void unBuyItem(ShoppingItem toUnBuy);
 
     const string &getListName() const {
         return listName;
@@ -111,11 +55,26 @@ public:
         return users.size();
     }
 
+    void printList() {
+        int i = 1, bought_items = 0, not_bought_items = static_cast<int>(getShoppingListSize());
+        for (ShoppingItem &it : spesaList) {
+            cout << "---" << i << ") ";
+            it.displayItem();
+            if (it.isBought()) {
+                bought_items++;
+                not_bought_items--;
+            }
+            i++;
+        }
+        cout << "You have bought " << bought_items << "items." << endl;
+        cout << "You still have to buy " << not_bought_items << "items." << endl;
+    }
+    // TODO ^^ Move responsibility to ProductVisualizer
+
 private:
     vector<ShoppingItem> spesaList;
     list<Observer*> users;
     string listName;
-    // TODO Move methods to cpp file for each class
 };
 
 #endif //MARKETLIST_SHOPPINGLIST_H

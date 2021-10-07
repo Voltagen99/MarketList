@@ -6,33 +6,21 @@
 #define MARKETLIST_PRODUCTVISUALIZER_H
 
 #include "Observer.h"
-#include "ShoppingList.h"
+#include "ShoppingList.cpp"
 
 class ProductVisualizer : public Observer {
 public:
     explicit ProductVisualizer(ShoppingList* shoppingList) : shoppingList(shoppingList) {
-            shoppingList->registerObserver(this);
+        shoppingList->registerObserver(this);
     }
     ~ProductVisualizer() override {
         shoppingList->removeObserver(this);
     }
 
-    void update() override {
-        if (shoppingList->getListName().empty())
-            cout << "\nMarket ";
-        else
-            cout << "\n" << shoppingList->getListName() << " ";
-        cout << "List updated!" << endl;
-        cout << "Number of enlisted elements: " << shoppingList->getShoppingListSize() << endl;
-        shoppingList->printList();
-        // FIXME Rewrite printList and displayItem methods here
-        // TODO Add functionality to handle articles left to buy + bought in the update() method
-    }
-
-    // TODO Change class name to ProductVisualizer
+    void update() override;
 
 private:
-    ShoppingList* shoppingList;
+    ShoppingList* shoppingList{};
 };
 
 
