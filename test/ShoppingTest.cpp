@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 #include "../ShoppingItem.h"
 #include "../ShoppingList.h"
-#include "../ProductScanner.h"
+#include "../ProductVisualizer.h"
 
 TEST(ShoppingItem, DefaultConstructor) {
     ShoppingItem s;
@@ -22,7 +22,7 @@ TEST(ShoppingList, DefaultConstructor) {
 
 TEST(ProductScanner, TestUsers) {
     ShoppingList l;
-    ProductScanner st(&l);
+    ProductVisualizer st(&l);
     // FIXME Implement this better in a suite with the new functionalities and attributes
     ASSERT_EQ(1, l.getUsersNumber());
     Observer* o;

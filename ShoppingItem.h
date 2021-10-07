@@ -28,7 +28,7 @@ public:
     }
 
     void setItemName(const string &item) {
-        ShoppingItem::itemName = item;
+        this->itemName = item;
     }
 
     bool isCategory() const {
@@ -92,15 +92,27 @@ public:
             cout << "Not specified]" << endl;
         else
             cout << this->getTotalPrice() << " Euro]" << endl;
+        cout << "[BOUGHT: ";
+        if (isBought())
+            cout << "Yes]" << endl;
+        else
+            cout << "No]" << endl;
+    }
+    // TODO ^^ Move responsibility to ProductVisualizer (or use tostring method?)
+
+    bool isBought() const {
+        return bought;
     }
 
-    // TODO ShoppingItem tostring
+    void setBought(bool b) {
+        this->bought = b;
+    }
 
 private:
     string itemName, category;
     float price;
     int quantity;
-    bool bought; // TODO Implement new functionality into the project: bought or not bought?
+    bool bought;
 };
 
 #endif //MARKETLIST_SHOPPINGITEM_H

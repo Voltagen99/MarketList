@@ -9,7 +9,6 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
-#include <exception>
 #include "ShoppingItem.h"
 #include "Subject.h"
 #define MAX_SIZE 50
@@ -56,23 +55,38 @@ public:
             spesaList.erase(it);
             notify();
         }
-        // TODO Change vector to multimap (delete by searching the name)
+        // TODO Change vector to multimap filled with ShoppingItems (add and remove the articles by confronting the name)
     }
 
-    void printList() {
-        if (this->getListName().empty())
-            cout << "---Market List:" << endl;
-        else
-            cout << "---" << this->getListName() << " List: " << endl;
-        int i = 1;
-        for (ShoppingItem &it : spesaList) {
-            cout << "---" << i << ") ";
-            it.displayItem();
-            i++;
+    void buyItem(ShoppingItem toBuy) {
+        if (!toBuy.isBought()) {
+            toBuy.setBought(true);
+            notify();
         }
     }
 
-    // TODO Add function to tell that article has been bought
+    void unBuyItem(ShoppingItem toUnBuy) {
+        if (toUnBuy.isBought()) {
+            toUnBuy.setBought(false);
+            notify();
+        }
+    }
+
+    void printList() {
+        int i = 1, bought_items = 0, not_bought_items = static_cast<int>(getShoppingListSize());
+        for (ShoppingItem &it : spesaList) {
+            cout << "---" << i << ") ";
+            it.displayItem();
+            if (it.isBought()) {
+                bought_items++;
+                not_bought_items--;
+            }
+            i++;
+        }
+        cout << "You have bought " << bought_items << "items." << endl;
+        cout << "You still have to buy " << not_bought_items << "items." << endl;
+    }
+    // TODO ^^ Move responsibility to ProductVisualizer
 
     const string &getListName() const {
         return listName;

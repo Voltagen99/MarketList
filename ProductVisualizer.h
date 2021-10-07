@@ -1,19 +1,19 @@
 //
-// Created by fraer on 27/09/2021.
+// Created by fraer on 07/10/2021.
 //
 
-#ifndef MARKETLIST_PRODUCTSCANNER_H
-#define MARKETLIST_PRODUCTSCANNER_H
+#ifndef MARKETLIST_PRODUCTVISUALIZER_H
+#define MARKETLIST_PRODUCTVISUALIZER_H
 
 #include "Observer.h"
 #include "ShoppingList.h"
 
-class ProductScanner : public Observer {
+class ProductVisualizer : public Observer {
 public:
-    explicit ProductScanner(ShoppingList* shoppingList) : shoppingList(shoppingList) {
-        shoppingList->registerObserver(this);
+    explicit ProductVisualizer(ShoppingList* shoppingList) : shoppingList(shoppingList) {
+            shoppingList->registerObserver(this);
     }
-    ~ProductScanner() override {
+    ~ProductVisualizer() override {
         shoppingList->removeObserver(this);
     }
 
@@ -25,8 +25,8 @@ public:
         cout << "List updated!" << endl;
         cout << "Number of enlisted elements: " << shoppingList->getShoppingListSize() << endl;
         shoppingList->printList();
-        // FIXME Implement displayList method here
-        // TODO Add how many items should I still buy in the list
+        // FIXME Rewrite printList and displayItem methods here
+        // TODO Add functionality to handle articles left to buy + bought in the update() method
     }
 
     // TODO Change class name to ProductVisualizer
@@ -35,4 +35,5 @@ private:
     ShoppingList* shoppingList;
 };
 
-#endif //MARKETLIST_PRODUCTSCANNER_H
+
+#endif //MARKETLIST_PRODUCTVISUALIZER_H

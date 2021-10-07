@@ -1,5 +1,5 @@
 #include "ShoppingList.h"
-#include "ProductScanner.h"
+#include "ProductVisualizer.h"
 #include "version.h"
 
 int main() {
@@ -14,8 +14,8 @@ int main() {
     ShoppingList list2;
     list2.setListName("Dairy");
 
-    ProductScanner general(&list1);
-    ProductScanner dairy(&list2);
+    ProductVisualizer general(&list1);
+    ProductVisualizer dairy(&list2);
 
     list1.addArticle(item1);
     list1.addArticle(item2);
