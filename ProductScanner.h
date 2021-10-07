@@ -18,14 +18,18 @@ public:
     }
 
     void update() override {
-        if (shoppingList->getListCategory().empty())
+        if (shoppingList->getListName().empty())
             cout << "\nMarket ";
         else
-            cout << "\n" << shoppingList->getListCategory() << " ";
+            cout << "\n" << shoppingList->getListName() << " ";
         cout << "List updated!" << endl;
         cout << "Number of enlisted elements: " << shoppingList->getShoppingListSize() << endl;
         shoppingList->printList();
+        // FIXME Implement displayList method here
+        // TODO Add how many items should I still buy in the list
     }
+
+    // TODO Change class name to ProductVisualizer
 
 private:
     ShoppingList* shoppingList;

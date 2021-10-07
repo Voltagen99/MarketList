@@ -12,7 +12,7 @@ protected:
         for (int i = 1; i <= 9; i++) {
             l.addArticle(s);
         }
-        l.setListCategory("");
+        l.setListName("");
     }
     void TearDown() override {}
     ShoppingList l;
@@ -20,9 +20,9 @@ protected:
 };
 
 TEST_F(ListTest, TestListCategory) {
-    ASSERT_FALSE(l.isListCategory());
-    l.setListCategory("ListBase");
-    ASSERT_EQ("ListBase", l.getListCategory());
+    ASSERT_FALSE(l.isListName());
+    l.setListName("ListBase");
+    ASSERT_EQ("ListBase", l.getListName());
 }
 
 TEST_F(ListTest, TestListSize) {

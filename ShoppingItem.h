@@ -11,8 +11,8 @@ using namespace std;
 
 class ShoppingItem {
 public:
-    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1) :
-    itemName(move(itemName)), category(move(category)), price(price), quantity(quantity) {}
+    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1, bool bought = false) :
+    itemName(move(itemName)), category(move(category)), price(price), quantity(quantity), bought(bought) {}
 
     ~ShoppingItem() = default;
 
@@ -61,6 +61,7 @@ public:
     }
 
     void setQuantity(int q) {
+        // TODO Control quantity (with testing)
         this->quantity = q;
     }
 
@@ -73,6 +74,7 @@ public:
     }
 
     float getTotalPrice() const {
+        // TODO Control price (with testing)
         std::cout.precision(3);
         return (this->getPrice())*(static_cast<float>(this->getQuantity()));
     }
@@ -92,10 +94,13 @@ public:
             cout << this->getTotalPrice() << " Euro]" << endl;
     }
 
+    // TODO ShoppingItem tostring
+
 private:
     string itemName, category;
     float price;
     int quantity;
+    bool bought; // TODO Implement new functionality into the project: bought or not bought?
 };
 
 #endif //MARKETLIST_SHOPPINGITEM_H

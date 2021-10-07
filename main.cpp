@@ -12,7 +12,7 @@ int main() {
 
     ShoppingList list1;
     ShoppingList list2;
-    list2.setListCategory("Dairy");
+    list2.setListName("Dairy");
 
     ProductScanner general(&list1);
     ProductScanner dairy(&list2);

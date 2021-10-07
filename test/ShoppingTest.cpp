@@ -17,12 +17,13 @@ TEST(ShoppingItem, DefaultConstructor) {
 
 TEST(ShoppingList, DefaultConstructor) {
     ShoppingList l;
-    ASSERT_FALSE(l.isListCategory());
+    ASSERT_FALSE(l.isListName());
 }
 
 TEST(ProductScanner, TestUsers) {
     ShoppingList l;
     ProductScanner st(&l);
+    // FIXME Implement this better in a suite with the new functionalities and attributes
     ASSERT_EQ(1, l.getUsersNumber());
     Observer* o;
     l.registerObserver(o);

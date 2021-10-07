@@ -18,6 +18,7 @@ protected:
 };
 
 TEST_F(ItemTest, TestPriceCalc) {
+    // FIXME Control price
     ASSERT_EQ(0, s.getTotalPrice());
     s.setPrice(5);
     s.setQuantity(2);

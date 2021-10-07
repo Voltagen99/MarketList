@@ -6,6 +6,7 @@
 #define MARKETLIST_SHOPPINGLIST_H
 
 #include <list>
+#include <utility>
 #include <vector>
 #include <algorithm>
 #include <exception>
@@ -15,7 +16,7 @@
 
 class ShoppingList : public Subject {
 public:
-    explicit ShoppingList(string category = "") : category(move(category)) {}
+    explicit ShoppingList(string listName = "") : listName(move(listName)) {}
     ~ShoppingList() override = default;
 
     void registerObserver(Observer* o) override {
@@ -33,13 +34,13 @@ public:
 
     void addArticle(const ShoppingItem& newArticle) {
         bool match = false;
-        if (newArticle.getCategory() == ShoppingList::getListCategory() &&
+        if (newArticle.getCategory() == ShoppingList::getListName() &&
         spesaList.size() <= MAX_SIZE) {
             spesaList.emplace_back(newArticle);
             match = true;
         }
         else {
-            if (ShoppingList::getListCategory().empty()) {
+            if (ShoppingList::getListName().empty()) {
                 spesaList.emplace_back(newArticle);
                 match = true;
             }
@@ -55,13 +56,14 @@ public:
             spesaList.erase(it);
             notify();
         }
+        // TODO Change vector to multimap (delete by searching the name)
     }
 
     void printList() {
-        if (this->getListCategory().empty())
+        if (this->getListName().empty())
             cout << "---Market List:" << endl;
         else
-            cout << "---" << this->getListCategory() << " List: " << endl;
+            cout << "---" << this->getListName() << " List: " << endl;
         int i = 1;
         for (ShoppingItem &it : spesaList) {
             cout << "---" << i << ") ";
@@ -70,16 +72,18 @@ public:
         }
     }
 
-    const string &getListCategory() const {
-        return category;
+    // TODO Add function to tell that article has been bought
+
+    const string &getListName() const {
+        return listName;
     }
 
-    void setListCategory(const string &c) {
-        this->category = c;
+    void setListName(const string &c) {
+        this->listName = c;
     }
 
-    bool isListCategory() const {
-        if (this->getListCategory().empty())
+    bool isListName() const {
+        if (this->getListName().empty())
             return false;
         else
             return true;
@@ -96,7 +100,8 @@ public:
 private:
     vector<ShoppingItem> spesaList;
     list<Observer*> users;
-    string category;
+    string listName;
+    // TODO Move methods to cpp file for each class
 };
 
 #endif //MARKETLIST_SHOPPINGLIST_H
