@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 using namespace std;
 
 class ShoppingItem {
@@ -51,19 +52,13 @@ public:
         return price;
     }
 
-    void setPrice(float p) {
-        std::cout.precision(3);
-        this->price = p;
-    }
+    void setPrice(float p);
 
     int getQuantity() const {
         return quantity;
     }
 
-    void setQuantity(int q) {
-        // TODO Control quantity (with testing)
-        this->quantity = q;
-    }
+    void setQuantity(int q);
 
     void setCategory(const string &c) {
         this->category = c;
@@ -74,7 +69,6 @@ public:
     }
 
     float getTotalPrice() const {
-        // TODO Control price (with testing)
         std::cout.precision(3);
         return (this->getPrice())*(static_cast<float>(this->getQuantity()));
     }

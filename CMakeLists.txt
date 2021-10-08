@@ -4,4 +4,4 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_subdirectory(test)
 
-add_executable(MarketList main.cpp ShoppingList.h ShoppingItem.h Subject.h Observer.h version.h ProductVisualizer.h ShoppingList.cpp ProductVisualizer.cpp)
+add_executable(MarketList main.cpp ShoppingList.h ShoppingItem.h Subject.h Observer.h version.h ProductVisualizer.h ShoppingList.cpp ProductVisualizer.cpp ShoppingItem.cpp)
