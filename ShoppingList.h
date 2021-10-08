@@ -55,22 +55,6 @@ public:
         return users.size();
     }
 
-    void printList() {
-        int i = 1, bought_items = 0, not_bought_items = static_cast<int>(getShoppingListSize());
-        for (ShoppingItem &it : spesaList) {
-            cout << "---" << i << ") ";
-            it.displayItem();
-            if (it.isBought()) {
-                bought_items++;
-                not_bought_items--;
-            }
-            i++;
-        }
-        cout << "You have bought " << bought_items << "items." << endl;
-        cout << "You still have to buy " << not_bought_items << "items." << endl;
-    }
-    // TODO ^^ Move responsibility to ProductVisualizer
-
 private:
     vector<ShoppingItem> spesaList;
     list<Observer*> users;

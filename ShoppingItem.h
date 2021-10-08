@@ -79,27 +79,6 @@ public:
         return (this->getPrice())*(static_cast<float>(this->getQuantity()));
     }
 
-    void displayItem() {
-        cout << "[ITEM: " << itemName << "] ";
-        cout << "[CATEGORY: ";
-        if (this->getCategory().empty())
-            cout << "Not specified]" << endl;
-        else
-            cout << this->getCategory() << "]" << endl;
-        cout << "[" << quantity << "] ";
-        cout << "[TOTAL PRICE: ";
-        if (!this->isPrice())
-            cout << "Not specified]" << endl;
-        else
-            cout << this->getTotalPrice() << " Euro]" << endl;
-        cout << "[BOUGHT: ";
-        if (isBought())
-            cout << "Yes]" << endl;
-        else
-            cout << "No]" << endl;
-    }
-    // TODO ^^ Move responsibility to ProductVisualizer (or use tostring method?)
-
     bool isBought() const {
         return bought;
     }
