@@ -5,25 +5,17 @@
 #include "ShoppingItem.h"
 
 void ShoppingItem::setPrice(float p) {
-    if (p > 0) {
-        if (p != this->getPrice()) {
-            std::cout.precision(3);
-            this->price = p;
-        }
-        else
-            cerr << "Input and Current prices are equal." << endl;
+    if (p >= 0) {
+        std::cout.precision(3);
+        this->price = p;
     }
     else
         throw invalid_argument("ERROR! Invalid price input.");
 }
 
 void ShoppingItem::setQuantity(int q) {
-    if (q > 0) {
-        if (q != this->getQuantity())
-            this->quantity = q;
-        else
-            cerr << "Input and Current quantities and equal." << endl;
-    }
+    if (q > 0)
+        this->quantity = q;
     else
         throw invalid_argument("ERROR! Invalid quantity input.");
 }
