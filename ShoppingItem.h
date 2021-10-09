@@ -21,24 +21,6 @@ public:
         return itemName == other.itemName;
     }
 
-    bool isName() const {
-        if (this->getItemName().empty())
-            return false;
-        else
-            return true;
-    }
-
-    void setItemName(const string &item) {
-        this->itemName = item;
-    }
-
-    bool isCategory() const {
-        if (this->category.empty())
-            return false;
-        else
-            return true;
-    }
-
     const string &getItemName() const {
         return itemName;
     }
@@ -52,17 +34,25 @@ public:
         return price;
     }
 
-    void setPrice(float p);
-
     int getQuantity() const {
         return quantity;
     }
 
-    void setQuantity(int q);
+    void setItemName(const string &item) {
+        this->itemName = item;
+    }
 
     void setCategory(const string &c) {
         this->category = c;
     }
+
+    void setPrice(float p);
+
+    void setQuantity(int q);
+
+    bool isName() const;
+
+    bool isCategory() const;
 
     bool isPrice() const {
         return this->getTotalPrice() != 0;

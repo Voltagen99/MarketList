@@ -19,3 +19,17 @@ void ShoppingItem::setQuantity(int q) {
     else
         throw invalid_argument("ERROR! Invalid quantity input.");
 }
+
+bool ShoppingItem::isName() const {
+    if (this->getItemName().empty())
+        return false;
+    else
+        return true;
+}
+
+bool ShoppingItem::isCategory() const {
+    if (this->category.empty())
+        return false;
+    else
+        return true;
+}
