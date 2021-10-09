@@ -6,7 +6,7 @@
 #define MARKETLIST_SHOPPINGLIST_H
 
 #include <list>
-#include <vector>
+#include <map>
 #include <algorithm>
 #include "ShoppingItem.h"
 #include "Subject.h"
@@ -23,7 +23,7 @@ public:
 
     void notify() override;
 
-    void addArticle(const ShoppingItem& newArticle);
+    bool addArticle(const ShoppingItem& newArticle);
 
     void removeArticle(const ShoppingItem& toDelete);
 
@@ -52,7 +52,7 @@ public:
     bool isListName() const;
 
 private:
-    vector<ShoppingItem> spesaList;
+    multimap<string,ShoppingItem> spesaList;
     list<Observer*> users;
     string listName;
 };

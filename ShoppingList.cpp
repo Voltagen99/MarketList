@@ -17,32 +17,43 @@ void ShoppingList::notify() {
         it->update();
 }
 
-void ShoppingList::addArticle(const ShoppingItem &newArticle) {
+bool ShoppingList::addArticle(const ShoppingItem& newArticle) {
+    string name = newArticle.getItemName();
     bool match = false;
-    if (newArticle.getCategory() == ShoppingList::getListName() &&
-        spesaList.size() <= MAX_SIZE) {
-        spesaList.emplace_back(newArticle);
+    if (newArticle.getCategory() == ShoppingList::getListName() && spesaList.size() <= MAX_SIZE) {
+        for (const auto& it : spesaList) {
+            if (it.first == name)
+                return false;
+        }
+        spesaList.insert(make_pair(name,newArticle));
         match = true;
     }
     else {
         if (ShoppingList::getListName().empty()) {
-            spesaList.emplace_back(newArticle);
+            for (const auto& it : spesaList) {
+                if (it.first == name)
+                    return false;
+            }
+            spesaList.insert(make_pair(name,newArticle));
             match = true;
         }
     }
     if (match)
         notify();
-    // TODO Change vector to multimap filled with ShoppingItems (add and remove the articles by confronting the name)
+    return match;
 }
 
-void ShoppingList::removeArticle(const ShoppingItem &toDelete) {
-    vector<ShoppingItem>::iterator it;
-    it = find(spesaList.begin(), spesaList.end(), toDelete);
-    if (it != spesaList.end()) {
-        spesaList.erase(it);
-        notify();
+void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
+    auto it = spesaList.begin();
+    while (it != spesaList.end()) {
+        if (it->second == toDelete) {
+            spesaList.erase(it);
+            notify();
+            break;
+        }
+        else
+            it++;
     }
-    // TODO Change vector to multimap filled with ShoppingItems (add and remove the articles by confronting the name)
 }
 
 void ShoppingList::buyItem(ShoppingItem toBuy) {
@@ -69,6 +80,6 @@ bool ShoppingList::isListName() const {
 float ShoppingList::getTotalListPrice() const {
     float total = 0;
     for (const auto& it : spesaList)
-        total += it.getTotalPrice();
+        total += it.second.getTotalPrice();
     return total;
 }
