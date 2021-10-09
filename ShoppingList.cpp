@@ -59,3 +59,16 @@ void ShoppingList::unBuyItem(ShoppingItem toUnBuy) {
     }
 }
 
+bool ShoppingList::isListName() const {
+    if (this->getListName().empty())
+        return false;
+    else
+        return true;
+}
+
+float ShoppingList::getTotalListPrice() const {
+    float total = 0;
+    for (const auto& it : spesaList)
+        total += it.getTotalPrice();
+    return total;
+}

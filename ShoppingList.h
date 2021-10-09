@@ -31,20 +31,7 @@ public:
 
     void unBuyItem(ShoppingItem toUnBuy);
 
-    const string &getListName() const {
-        return listName;
-    }
-
-    void setListName(const string &c) {
-        this->listName = c;
-    }
-
-    bool isListName() const {
-        if (this->getListName().empty())
-            return false;
-        else
-            return true;
-    }
+    float getTotalListPrice() const;
 
     size_t getShoppingListSize() const {
         return spesaList.size();
@@ -53,6 +40,16 @@ public:
     size_t getUsersNumber() const {
         return users.size();
     }
+
+    const string &getListName() const {
+        return listName;
+    }
+
+    void setListName(const string &c) {
+        this->listName = c;
+    }
+
+    bool isListName() const;
 
 private:
     vector<ShoppingItem> spesaList;
