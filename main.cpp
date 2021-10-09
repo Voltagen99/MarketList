@@ -1,4 +1,3 @@
-#include "ShoppingList.h"
 #include "ProductVisualizer.h"
 #include "version.h"
 
@@ -25,7 +24,7 @@ int main() {
     list1.removeArticle(item5);
     item5.setCategory("Housecare");
     item5.setPrice(6.20);
-    item5.setQuantity(2);
+    item5.setQuantity(1);
     list1.addArticle(item5);
     list2.addArticle(item1);
     list2.addArticle(item2);

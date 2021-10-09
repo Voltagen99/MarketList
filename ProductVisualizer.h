@@ -6,16 +6,14 @@
 #define MARKETLIST_PRODUCTVISUALIZER_H
 
 #include "Observer.h"
-#include "ShoppingList.cpp"
+#include "ShoppingList.h"
 
 class ProductVisualizer : public Observer {
 public:
     explicit ProductVisualizer(ShoppingList* shoppingList) : shoppingList(shoppingList) {
         shoppingList->registerObserver(this);
     }
-    ~ProductVisualizer() override {
-        shoppingList->removeObserver(this);
-    }
+    ~ProductVisualizer() override;
 
     void update() override;
 

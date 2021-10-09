@@ -4,6 +4,10 @@
 
 #include "ProductVisualizer.h"
 
+ProductVisualizer::~ProductVisualizer() {
+    shoppingList->removeObserver(this);
+}
+
 void ProductVisualizer::update() {
     if (shoppingList->getListName().empty())
         cout << "\nMarket ";

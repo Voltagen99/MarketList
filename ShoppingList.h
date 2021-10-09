@@ -6,7 +6,6 @@
 #define MARKETLIST_SHOPPINGLIST_H
 
 #include <list>
-#include <utility>
 #include <vector>
 #include <algorithm>
 #include "ShoppingItem.h"
