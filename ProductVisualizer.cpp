@@ -15,6 +15,7 @@ void ProductVisualizer::update() {
         cout << "\n" << shoppingList->getListName() << " ";
     cout << "List updated!" << endl;
     cout << "Number of enlisted elements: " << shoppingList->getShoppingListSize() << endl;
+    // TODO Tostring method; type string, returns a string
 
     // TODO Method is being rewritten, coming soon in a future update
     /*int i, bought = 0, unbought = static_cast<int>(shoppingList->getShoppingListSize());

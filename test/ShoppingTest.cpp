@@ -6,6 +6,7 @@
 #include "../ShoppingItem.h"
 #include "../ShoppingList.h"
 #include "../ShoppingList.cpp"
+#include "../ProductVisualizer.h"
 
 TEST(ShoppingItem, DefaultConstructor) {
     ShoppingItem s;
@@ -20,3 +21,13 @@ TEST(ShoppingList, DefaultConstructor) {
     ASSERT_FALSE(l.isListName());
 }
 
+TEST(ProductVisualizer, DefaultConstuctor) {
+    ShoppingList l;
+    ProductVisualizer st(&l);
+    ASSERT_EQ(1, l.getUsersNumber());
+    Observer* o;
+    l.registerObserver(o);
+    ASSERT_EQ(2, l.getUsersNumber());
+    l.removeObserver(o);
+    ASSERT_EQ(1, l.getUsersNumber());
+}
