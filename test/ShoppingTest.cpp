@@ -7,6 +7,7 @@
 #include "../ShoppingList.h"
 #include "../ShoppingList.cpp"
 #include "../ProductVisualizer.h"
+#include "../ProductVisualizer.cpp"
 
 TEST(ShoppingItem, DefaultConstructor) {
     ShoppingItem s;
