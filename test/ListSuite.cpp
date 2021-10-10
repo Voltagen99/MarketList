@@ -9,26 +9,25 @@
 class ListTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        for (int i = 1; i <= 9; i++) {
-            l.addArticle(s);
-        }
         l.setListName("");
+        l.addArticle(s);
     }
     void TearDown() override {}
     ShoppingList l;
     ShoppingItem s;
 };
 
+TEST_F(ListTest, TestListSize) {
+    ShoppingItem q("Item");
+    ASSERT_EQ(1, l.getShoppingListSize());
+    l.addArticle(q);
+    ASSERT_EQ(2, l.getShoppingListSize());
+    l.removeArticle(q);
+    ASSERT_EQ(1, l.getShoppingListSize());
+}
+
 TEST_F(ListTest, TestListCategory) {
     ASSERT_FALSE(l.isListName());
     l.setListName("ListBase");
     ASSERT_EQ("ListBase", l.getListName());
-}
-
-TEST_F(ListTest, TestListSize) {
-    ASSERT_EQ(9, l.getShoppingListSize());
-    l.addArticle(s);
-    ASSERT_EQ(10, l.getShoppingListSize());
-    l.removeArticle(s);
-    ASSERT_EQ(9, l.getShoppingListSize());
 }

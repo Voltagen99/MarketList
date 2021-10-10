@@ -5,8 +5,7 @@
 #include "gtest/gtest.h"
 #include "../ShoppingItem.h"
 #include "../ShoppingList.h"
-#include "../ProductVisualizer.h"
-#include "../ProductVisualizer.cpp"
+#include "../ShoppingList.cpp"
 
 TEST(ShoppingItem, DefaultConstructor) {
     ShoppingItem s;
@@ -19,17 +18,5 @@ TEST(ShoppingItem, DefaultConstructor) {
 TEST(ShoppingList, DefaultConstructor) {
     ShoppingList l;
     ASSERT_FALSE(l.isListName());
-}
-
-TEST(ProductScanner, TestUsers) {
-    ShoppingList l;
-    ProductVisualizer st(&l);
-    // FIXME Implement this better in a suite with the new functionalities and attributes
-    ASSERT_EQ(1, l.getUsersNumber());
-    Observer* o;
-    l.registerObserver(o);
-    ASSERT_EQ(2, l.getUsersNumber());
-    l.removeObserver(o);
-    ASSERT_EQ(1, l.getUsersNumber());
 }
 
