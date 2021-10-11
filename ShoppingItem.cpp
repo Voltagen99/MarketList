@@ -28,8 +28,6 @@ void ShoppingItem::setPrice(float p) {
     }
     else
         throw invalid_argument("ERROR! Invalid price input.");
-    if (!this->isBought())
-        this->price = 0;
 }
 
 void ShoppingItem::setQuantity(int q) {

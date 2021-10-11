@@ -16,24 +16,26 @@ int main() {
     ProductVisualizer general(&list1);
     ProductVisualizer dairy(&list2);
 
-    list1.addArticle(item1); // Adding articles
+    list1.addArticle(item1);
     list1.addArticle(item2);
     list1.addArticle(item3);
     list1.addArticle(item4);
     list1.addArticle(item5);
-    list1.removeArticle(item5); // Testing setters
+    list1.removeArticle(item5);
     item5.setCategory("Housecare");
     item5.setBought(true);
     item5.setPrice(6.20);
     item5.setQuantity(1);
     list1.addArticle(item5);
-    list2.addArticle(item1); // Adding articles (custom list)
+    list2.addArticle(item1);
     list2.addArticle(item2);
     list2.addArticle(item3);
     item2.setBought(true);
     list2.removeArticle(item2);
     list1.buyItem(item2);
+    list2.addArticle(item2);
     list2.buyItem(item2);
+    item2.setBought(false);
     list2.unBuyItem(item2);
     return 0;
 }
