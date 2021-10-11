@@ -20,6 +20,7 @@ protected:
 
 TEST_F(ItemTest, TestPriceCalc) {
     ASSERT_EQ(0, s.getTotalPrice());
+    s.setBought(true);
     s.setPrice(5);
     s.setQuantity(2);
     ASSERT_EQ(10, s.getTotalPrice());
