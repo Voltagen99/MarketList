@@ -17,6 +17,8 @@ public:
     explicit ShoppingList(string listName = "") : listName(move(listName)) {}
     ~ShoppingList() override = default;
 
+    string printList() const;
+
     void registerObserver(Observer* o) override;
 
     void removeObserver(Observer* o) override;
@@ -40,6 +42,10 @@ public:
     size_t getUsersNumber() const {
         return users.size();
     }
+
+    int getBoughtItems() const;
+
+    int getUnboughtItems() const;
 
     const string &getListName() const {
         return listName;

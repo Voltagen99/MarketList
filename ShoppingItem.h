@@ -8,14 +8,18 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <sstream>
+#include <iomanip>
 using namespace std;
 
 class ShoppingItem {
 public:
-    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, int quantity = 1, bool bought = false) :
-    itemName(move(itemName)), category(move(category)), price(price), quantity(quantity), bought(bought) {}
+    explicit ShoppingItem(string itemName = "", string category = "", float price = 0, bool bought = false, int quantity = 1) :
+    itemName(move(itemName)), category(move(category)), price(price), bought(bought), quantity(quantity) {}
 
     ~ShoppingItem() = default;
+
+    string displayItem() const;
 
     bool operator==(const ShoppingItem& other) {
         return itemName == other.itemName;

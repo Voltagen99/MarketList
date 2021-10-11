@@ -4,6 +4,21 @@
 
 #include "ShoppingList.h"
 
+string ShoppingList::printList() const {
+    ostringstream listing;
+    int i = 1;
+    if (this->isListName())
+        listing << "\n" << this->getListName() << " List:\n";
+    else
+        listing << "\nMarket List:\n";
+    for (const auto &it : spesaList) {
+        listing << "---" << to_string(i) << ") ";
+        listing << it.second.displayItem();
+        i++;
+    }
+    return listing.str();
+}
+
 void ShoppingList::registerObserver(Observer *o) {
     users.emplace_back(o);
 }
@@ -80,6 +95,25 @@ bool ShoppingList::isListName() const {
 float ShoppingList::getTotalListPrice() const {
     float total = 0;
     for (const auto& it : spesaList)
-        total += it.second.getTotalPrice();
+        if (it.second.isBought())
+            total += it.second.getTotalPrice();
     return total;
+}
+
+int ShoppingList::getBoughtItems() const {
+    int b = 0;
+    for (const auto &it : spesaList) {
+        if (it.second.isBought())
+            b++;
+    }
+    return b;
+}
+
+int ShoppingList::getUnboughtItems() const {
+    int u = 0;
+    for (const auto &it : spesaList) {
+        if (!it.second.isBought())
+            u++;
+    }
+    return u;
 }
