@@ -25,17 +25,16 @@ int main() {
     item5.setCategory("Housecare");
     item5.setBought(true);
     item5.setPrice(6.20);
-    item5.setQuantity(1);
+    item5.setQuantity(2);
     list1.addArticle(item5);
     list2.addArticle(item1);
     list2.addArticle(item2);
     list2.addArticle(item3);
     item2.setBought(true);
     list2.removeArticle(item2);
-    list1.buyItem(item2);
+    list1.buyItem("Grana Padano Cheese");
     list2.addArticle(item2);
-    list2.buyItem(item2);
-    item2.setBought(false);
-    list2.unBuyItem(item2);
+    list2.buyItem("Grana Padano Cheese");
+    list2.unBuyItem("Grana Padano Cheese");
     return 0;
 }

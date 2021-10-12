@@ -29,9 +29,9 @@ public:
 
     void removeArticle(const ShoppingItem& toDelete);
 
-    void buyItem(ShoppingItem toBuy);
+    void buyItem(const string& toBuy);
 
-    void unBuyItem(ShoppingItem toUnBuy);
+    void unBuyItem(const string& toUnBuy);
 
     float getTotalListPrice() const;
 

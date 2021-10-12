@@ -71,11 +71,11 @@ void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
     }
 }
 
-void ShoppingList::buyItem(ShoppingItem toBuy) {
+void ShoppingList::buyItem(const string& toBuy) {
     auto it = spesaList.begin();
     while (it != spesaList.end()) {
-        if (!toBuy.isBought() && it->second == toBuy) {
-            toBuy.setBought(true);
+        if (!it->second.isBought() && it->second.getItemName() == toBuy) {
+            it->second.setBought(true);
             notify();
             break;
         }
@@ -84,11 +84,11 @@ void ShoppingList::buyItem(ShoppingItem toBuy) {
     }
 }
 
-void ShoppingList::unBuyItem(ShoppingItem toUnBuy) {
+void ShoppingList::unBuyItem(const string& toUnBuy) {
     auto it = spesaList.begin();
     while (it != spesaList.end()) {
-        if (toUnBuy.isBought() && it->second == toUnBuy) {
-            toUnBuy.setBought(false);
+        if (it->second.isBought() && it->second.getItemName() == toUnBuy) {
+            it->second.setBought(false);
             notify();
             break;
         }
