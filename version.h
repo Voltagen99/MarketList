@@ -5,5 +5,6 @@
 #ifndef MARKETLIST_VERSION_H
 #define MARKETLIST_VERSION_H
 
-const string VERSION = "1.0";
+#define VERSION 1.1
+
 #endif //MARKETLIST_VERSION_H
