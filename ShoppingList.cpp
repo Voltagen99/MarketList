@@ -11,7 +11,7 @@ string ShoppingList::toString() const {
         listing << "\n" << this->getListName() << " List:\n";
     else
         listing << "\nMarket List:\n";
-    for (const auto &it : spesaList) {
+    for (const auto &it: spesaList) {
         listing << "---" << to_string(i) << ") ";
         listing << it.second.toString();
         i++;
@@ -28,69 +28,41 @@ void ShoppingList::removeObserver(Observer *o) {
 }
 
 void ShoppingList::notify() {
-    for(const auto & it : users)
+    for (const auto &it: users)
         it->update();
 }
 
-bool ShoppingList::addArticle(const ShoppingItem& newArticle) {
+bool ShoppingList::addArticle(const ShoppingItem &newArticle) {
     string name = newArticle.getItemName();
-    bool match = false;
-    if (newArticle.getCategory() == ShoppingList::getListName() && spesaList.size() <= MAX_SIZE) {
-        for (const auto& it : spesaList) {
-            if (it.first == name)
-                return false;
-        }
-        spesaList.insert(make_pair(name,newArticle));
-        match = true;
+    for (const auto &it: spesaList) {
+        if (it.first == name)
+            return false;
     }
-    // TODO Remove if
-    else {
-        if (ShoppingList::getListName().empty()) {
-            for (const auto& it : spesaList) {
-                if (it.first == name)
-                    return false;
-            }
-            spesaList.insert(make_pair(name,newArticle));
-            match = true;
-        }
-    }
-    if (match)
+    spesaList.insert(make_pair(name, newArticle));
+    notify();
+    return true;
+}
+
+void ShoppingList::removeArticle(const ShoppingItem &toDelete) {
+    auto it = spesaList.find(toDelete.getItemName());
+    if (it != spesaList.end()) {
+        spesaList.erase(it);
         notify();
-    return match;
-}
-
-void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
-    auto it = spesaList.begin();
-    // TODO Ricerca Logaritmica multimappa
-    while (it != spesaList.end()) {
-        if (it->second == toDelete) {
-            spesaList.erase(it);
-            notify();
-            break;
-        }
-        else
-            it++;
     }
 }
 
-void ShoppingList::buyItem(const string& editBuy) {
-    auto it = spesaList.begin();
-    while (it != spesaList.end()) {
-        if (!it->second.isBought() && it->second.getItemName() == editBuy) {
+void ShoppingList::buyChangeState(const ShoppingItem &toChange) {
+    auto it = spesaList.find(toChange.getItemName());
+    if (it != spesaList.end()) {
+        if (!it->second.isBought()) {
             it->second.setBought(true);
             notify();
-            break;
-        }
-        else if (it->second.isBought() && it->second.getItemName() == editBuy) {
+        } else if (it->second.isBought()) {
             it->second.setBought(false);
             notify();
-            break;
         }
-        else
-            it++;
     }
 }
-// TODO Ricerca Logaritmica multimappa ^^
 
 bool ShoppingList::isListName() const {
     if (this->getListName().empty())
@@ -101,7 +73,7 @@ bool ShoppingList::isListName() const {
 
 float ShoppingList::getTotalListPrice() const {
     float total = 0;
-    for (const auto& it : spesaList)
+    for (const auto &it: spesaList)
         if (it.second.isBought())
             total += it.second.getTotalPrice();
     return total;
@@ -109,7 +81,7 @@ float ShoppingList::getTotalListPrice() const {
 
 int ShoppingList::getBoughtItems() const {
     int b = 0;
-    for (const auto &it : spesaList) {
+    for (const auto &it: spesaList) {
         if (it.second.isBought())
             b++;
     }
@@ -118,7 +90,7 @@ int ShoppingList::getBoughtItems() const {
 
 int ShoppingList::getUnboughtItems() const {
     int u = 0;
-    for (const auto &it : spesaList) {
+    for (const auto &it: spesaList) {
         if (!it.second.isBought())
             u++;
     }

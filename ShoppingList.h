@@ -10,7 +10,6 @@
 #include <algorithm>
 #include "ShoppingItem.h"
 #include "Subject.h"
-#define MAX_SIZE 50
 
 class ShoppingList : public Subject {
 public:
@@ -29,9 +28,7 @@ public:
 
     void removeArticle(const ShoppingItem& toDelete);
 
-    void buyItem(const string& toBuy);
-
-    void unBuyItem(const string& toUnBuy);
+    void buyChangeState(const ShoppingItem& toChange);
 
     float getTotalListPrice() const;
 

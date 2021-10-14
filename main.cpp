@@ -11,7 +11,7 @@ int main() {
 
     ShoppingList list1;
     ShoppingList list2;
-    list2.setListName("Dairy");
+    list2.setListName("Dinner");
 
     ProductVisualizer general(&list1);
     ProductVisualizer dairy(&list2);
@@ -32,9 +32,8 @@ int main() {
     list2.addArticle(item3);
     item2.setBought(true);
     list2.removeArticle(item2);
-    list1.buyItem("Grana Padano Cheese");
+    list1.buyChangeState(item2);
     list2.addArticle(item2);
-    list2.buyItem("Grana Padano Cheese");
-    list2.unBuyItem("Grana Padano Cheese");
+    list2.buyChangeState(item2);
     return 0;
 }
