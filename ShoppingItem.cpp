@@ -4,7 +4,7 @@
 
 #include "ShoppingItem.h"
 
-string ShoppingItem::displayItem() const {
+string ShoppingItem::toString() const {
     ostringstream output;
     output << "[ITEM: " << this->getItemName() << "] " << "[CATEGORY: ";
     if (this->getCategory().empty())

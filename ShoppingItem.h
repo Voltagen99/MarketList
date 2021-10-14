@@ -19,7 +19,7 @@ public:
 
     ~ShoppingItem() = default;
 
-    string displayItem() const;
+    string toString() const;
 
     bool operator==(const ShoppingItem& other) {
         return itemName == other.itemName;

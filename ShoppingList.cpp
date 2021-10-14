@@ -4,7 +4,7 @@
 
 #include "ShoppingList.h"
 
-string ShoppingList::printList() const {
+string ShoppingList::toString() const {
     ostringstream listing;
     int i = 1;
     if (this->isListName())
@@ -13,7 +13,7 @@ string ShoppingList::printList() const {
         listing << "\nMarket List:\n";
     for (const auto &it : spesaList) {
         listing << "---" << to_string(i) << ") ";
-        listing << it.second.displayItem();
+        listing << it.second.toString();
         i++;
     }
     return listing.str();
@@ -43,6 +43,7 @@ bool ShoppingList::addArticle(const ShoppingItem& newArticle) {
         spesaList.insert(make_pair(name,newArticle));
         match = true;
     }
+    // TODO Remove if
     else {
         if (ShoppingList::getListName().empty()) {
             for (const auto& it : spesaList) {
@@ -60,6 +61,7 @@ bool ShoppingList::addArticle(const ShoppingItem& newArticle) {
 
 void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
     auto it = spesaList.begin();
+    // TODO Ricerca Logaritmica multimappa
     while (it != spesaList.end()) {
         if (it->second == toDelete) {
             spesaList.erase(it);
@@ -73,6 +75,7 @@ void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
 
 void ShoppingList::buyItem(const string& toBuy) {
     auto it = spesaList.begin();
+    // TODO Ricerca Logaritmica multimappa
     while (it != spesaList.end()) {
         if (!it->second.isBought() && it->second.getItemName() == toBuy) {
             it->second.setBought(true);
@@ -84,8 +87,11 @@ void ShoppingList::buyItem(const string& toBuy) {
     }
 }
 
+// TODO Fondere i metodi (else if)
+
 void ShoppingList::unBuyItem(const string& toUnBuy) {
     auto it = spesaList.begin();
+    // TODO Ricerca Logaritmica multimappa
     while (it != spesaList.end()) {
         if (it->second.isBought() && it->second.getItemName() == toUnBuy) {
             it->second.setBought(false);

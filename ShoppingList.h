@@ -17,7 +17,7 @@ public:
     explicit ShoppingList(string listName = "") : listName(move(listName)) {}
     ~ShoppingList() override = default;
 
-    string printList() const;
+    string toString() const;
 
     void registerObserver(Observer* o) override;
 

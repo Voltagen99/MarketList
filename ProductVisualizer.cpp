@@ -16,7 +16,7 @@ void ProductVisualizer::update() {
         updating << "\n" << shoppingList->getListName() << " ";
     updating << "List updated!\n";
     updating << "Number of enlisted elements: " << to_string(shoppingList->getShoppingListSize()) << endl;
-    updating << shoppingList->printList();
+    updating << shoppingList->toString();
     updating << "You have bought " << shoppingList->getBoughtItems();
     if (shoppingList->getBoughtItems() != 1)
         updating << " items.\n";
