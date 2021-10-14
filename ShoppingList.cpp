@@ -73,27 +73,15 @@ void ShoppingList::removeArticle(const ShoppingItem& toDelete) {
     }
 }
 
-void ShoppingList::buyItem(const string& toBuy) {
+void ShoppingList::buyItem(const string& editBuy) {
     auto it = spesaList.begin();
-    // TODO Ricerca Logaritmica multimappa
     while (it != spesaList.end()) {
-        if (!it->second.isBought() && it->second.getItemName() == toBuy) {
+        if (!it->second.isBought() && it->second.getItemName() == editBuy) {
             it->second.setBought(true);
             notify();
             break;
         }
-        else
-            it++;
-    }
-}
-
-// TODO Fondere i metodi (else if)
-
-void ShoppingList::unBuyItem(const string& toUnBuy) {
-    auto it = spesaList.begin();
-    // TODO Ricerca Logaritmica multimappa
-    while (it != spesaList.end()) {
-        if (it->second.isBought() && it->second.getItemName() == toUnBuy) {
+        else if (it->second.isBought() && it->second.getItemName() == editBuy) {
             it->second.setBought(false);
             notify();
             break;
@@ -102,6 +90,7 @@ void ShoppingList::unBuyItem(const string& toUnBuy) {
             it++;
     }
 }
+// TODO Ricerca Logaritmica multimappa ^^
 
 bool ShoppingList::isListName() const {
     if (this->getListName().empty())
