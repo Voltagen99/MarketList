@@ -32,8 +32,8 @@ int main() {
     list2.addArticle(item3);
     item2.setBought(true);
     list2.removeArticle(item2);
-    list1.buyChangeState(item2);
+    list1.buyChangeStatus(item2);
     list2.addArticle(item2);
-    list2.buyChangeState(item2);
+    list2.buyChangeStatus(item2);
     return 0;
 }

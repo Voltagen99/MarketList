@@ -51,7 +51,7 @@ void ShoppingList::removeArticle(const ShoppingItem &toDelete) {
     }
 }
 
-void ShoppingList::buyChangeState(const ShoppingItem &toChange) {
+void ShoppingList::buyChangeStatus(const ShoppingItem &toChange) {
     auto it = spesaList.find(toChange.getItemName());
     if (it != spesaList.end()) {
         if (!it->second.isBought()) {

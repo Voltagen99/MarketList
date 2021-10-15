@@ -28,7 +28,7 @@ public:
 
     void removeArticle(const ShoppingItem& toDelete);
 
-    void buyChangeState(const ShoppingItem& toChange);
+    void buyChangeStatus(const ShoppingItem& toChange);
 
     float getTotalListPrice() const;
 
