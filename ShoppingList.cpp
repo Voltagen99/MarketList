@@ -73,9 +73,10 @@ bool ShoppingList::isListName() const {
 
 float ShoppingList::getTotalListPrice() const {
     float total = 0;
-    for (const auto &it: spesaList)
+    for (const auto &it: spesaList) {
         if (it.second.isBought())
             total += it.second.getTotalPrice();
+    }
     return total;
 }
 
