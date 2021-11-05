@@ -31,3 +31,24 @@ TEST_F(ListTest, TestListCategory) {
     l.setListName("ListBase");
     ASSERT_EQ("ListBase", l.getListName());
 }
+
+TEST_F(ListTest, TestBoughtStatus) {
+    ShoppingItem a("Test1");
+    ShoppingItem b("Test2");
+    ShoppingItem c("Test3");
+    l.addArticle(a);
+    l.addArticle(b);
+    l.addArticle(c);
+    ASSERT_EQ(l.getUnboughtItems(),4);
+    ASSERT_EQ(l.getBoughtItems(),0);
+    l.buyChangeStatus(a);
+    l.buyChangeStatus(b);
+    ASSERT_EQ(l.getBoughtItems(),2);
+    l.buyChangeStatus(b);
+    ASSERT_EQ(l.getUnboughtItems(),3);
+    l.buyChangeStatus(b);
+    l.buyChangeStatus(c);
+    l.buyChangeStatus(s);
+    ASSERT_EQ(l.getBoughtItems(),4);
+    ASSERT_EQ(l.getUnboughtItems(),0);
+}
