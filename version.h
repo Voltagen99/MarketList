@@ -5,6 +5,6 @@
 #ifndef MARKETLIST_VERSION_H
 #define MARKETLIST_VERSION_H
 
-#define VERSION 1.2
+#define VERSION 1.3
 
 #endif //MARKETLIST_VERSION_H
